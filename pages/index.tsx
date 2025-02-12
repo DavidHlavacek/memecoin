@@ -26,7 +26,7 @@ export default function Home() {
       >
         <div className="text-center z-10">
           <TypingTitle />
-          <p className="text-neon-green mt-4 text-xl">The Future of Crypto Currencies</p>
+          <p className="text-neon-green mt-4 text-xl">The Future of Crypto</p>
         </div>
       </motion.section>
 
@@ -241,28 +241,19 @@ export default function Home() {
             ].map((member, index) => (
               <motion.div
                 key={member.name}
+                style={{ borderWidth: "1px" }}
                 className="p-6 border border-neon-green/30 rounded-lg text-center relative 
                          backdrop-blur-sm bg-black/40 overflow-hidden group"
                 initial={{ y: 50, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
                 viewport={{ once: true }}
-                whileHover={{ borderColor: "#39FF14" }}
+                whileHover={{ 
+                  borderColor: "#39FF14", 
+                  borderWidth: "3px", 
+                  transition: { duration: 0.2 }
+                }}
               >
-                {/* Glow effect on hover */}
-                <motion.div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100
-                           bg-gradient-to-r from-neon-green/0 via-neon-green/10 to-neon-green/0"
-                  initial={false}
-                  animate={{
-                    x: [-500, 500],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                />
                 <h3 className="text-2xl mb-2">{member.name}</h3>
                 <p className="text-neon-green mb-4">{member.role}</p>
                 <a

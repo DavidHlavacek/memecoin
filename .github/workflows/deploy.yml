@@ -41,6 +41,7 @@ jobs:
           #PORT: ${{ github.ref == 'refs/heads/deploytest' && '3000' || github.ref == 'refs/heads/deployprod' && '3001' }}
         run: |
           ssh -o StrictHostKeyChecking=no $USERNAME@$HOST << EOF
+            git config --global --add safe.directory /var/www/memecoin
             export PATH=/home/ubuntu/.nvm/versions/node/v22.14.0/bin:$PATH #'which pm2' command on terminal will give the right path
             cd $TARGET_DIR
             sudo git pull origin ${GITHUB_REF#refs/heads/}

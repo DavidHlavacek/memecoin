@@ -32,8 +32,8 @@ jobs:
         env:
           HOST: 130.162.56.8
           USERNAME: ubuntu
-          TARGET_DIR: /var/www/folder_name
-          APP_NAME: app_name #should match the name of the server block
+          TARGET_DIR: /var/www/memecoin
+          APP_NAME: memecoin #should match the name of the server block
           PORT: 3000
           #if multiple deploys are needed from different branches
           #TARGET_DIR: ${{ github.ref == 'refs/heads/deploytest' && '/var/www/folder_name' || github.ref == 'refs/heads/deployprod' && '/var/www/another-location' }}
@@ -41,7 +41,7 @@ jobs:
           #PORT: ${{ github.ref == 'refs/heads/deploytest' && '3000' || github.ref == 'refs/heads/deployprod' && '3001' }}
         run: |
           ssh -o StrictHostKeyChecking=no $USERNAME@$HOST << EOF
-            export PATH=/root/.nvm/versions/node/v20.12.0/bin:$PATH #'which pm2' command on terminal will give the right path
+            export PATH=/home/ubuntu/.nvm/versions/node/v22.14.0/bin:$PATH #'which pm2' command on terminal will give the right path
             cd $TARGET_DIR
             git pull origin ${GITHUB_REF#refs/heads/}
             npm install

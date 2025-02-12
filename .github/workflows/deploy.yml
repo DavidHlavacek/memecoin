@@ -43,9 +43,9 @@ jobs:
           ssh -o StrictHostKeyChecking=no $USERNAME@$HOST << EOF
             export PATH=/home/ubuntu/.nvm/versions/node/v22.14.0/bin:$PATH #'which pm2' command on terminal will give the right path
             cd $TARGET_DIR
-            git pull origin ${GITHUB_REF#refs/heads/}
-            npm install
-            npm run build
+            sudo git pull origin ${GITHUB_REF#refs/heads/}
+            sudo npm install
+            sudo npm run build
             if pm2 list | grep -q $APP_NAME; then
               echo "Restarting application: $APP_NAME"
               pm2 restart $APP_NAME

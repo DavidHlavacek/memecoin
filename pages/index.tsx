@@ -36,7 +36,7 @@ export default function Home() {
         initial={{ opacity: 0, y: 100 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        viewport={{ once: true, margin: "-200px", amount: 0.1 }}
+        viewport={{ once: true, amount: 0.1 }}
       >
         <motion.div 
           className="max-w-4xl mx-auto backdrop-blur-sm bg-black/30 p-8 rounded-2xl"
@@ -74,7 +74,7 @@ export default function Home() {
         initial={{ opacity: 0, y: 100 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        viewport={{ once: true, margin: "-200px", amount: 0.1 }}
+        viewport={{ once: true, amount: 0.1 }}
       >
         <motion.div 
           className="max-w-4xl mx-auto backdrop-blur-sm bg-black/30 p-8 rounded-2xl"
@@ -126,7 +126,7 @@ export default function Home() {
         initial={{ opacity: 0, y: 100 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        viewport={{ once: true, margin: "-200px", amount: 0.1 }}
+        viewport={{ once: true, amount: 0.1 }}
       >
         <motion.div 
           className="max-w-4xl mx-auto backdrop-blur-sm bg-black/30 p-8 rounded-2xl w-full"
@@ -155,9 +155,12 @@ export default function Home() {
             ].map((phase, index) => (
               <motion.div
                 key={phase.phase}
-                className={`relative flex items-center gap-8 mb-16 ${
-                  index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
-                }`}
+                className={`
+                  relative flex items-center mb-16
+                  flex-col gap-8              /* Mobile: vertical stack with gap */
+                  md:gap-0 md:flex-row       /* Desktop: no gap, always row */
+                  ${index % 2 === 0 ? '' : 'md:flex-row-reverse'}  /* Desktop: alternate direction */
+                `}
                 initial={{ x: index % 2 === 0 ? -50 : 50, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
@@ -165,7 +168,8 @@ export default function Home() {
               >
                 {/* Timeline Node */}
                 <motion.div 
-                  className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-neon-green rounded-full z-10"
+                  className="absolute w-4 h-4 bg-neon-green rounded-full z-10"
+                  style={{ left: "calc(50% - 8px)" }}
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
                   transition={{ delay: 0.4 + index * 0.1, duration: 0.2 }}
@@ -177,7 +181,7 @@ export default function Home() {
                 
                 {/* Content Card */}
                 <motion.div 
-                  className="w-[calc(50%-2rem)] backdrop-blur-sm bg-black/40 p-6 rounded-xl border border-neon-green/30
+                  className="w-[90%] md:w-[50%] backdrop-blur-sm bg-black/40 p-6 rounded-xl border border-neon-green/30
                            hover:border-neon-green transition-colors duration-300"
                   whileHover={{ scale: 1.02 }}
                 >
@@ -214,7 +218,7 @@ export default function Home() {
         initial={{ opacity: 0, y: 100 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        viewport={{ once: true, margin: "-200px", amount: 0.1 }}
+        viewport={{ once: true, amount: 0.1 }}
       >
         <motion.div 
           className="max-w-4xl mx-auto backdrop-blur-sm bg-black/30 p-8 rounded-2xl"
